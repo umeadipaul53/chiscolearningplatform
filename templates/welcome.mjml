@@ -1,0 +1,128 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="Inter, Arial, sans-serif"></mj-all>
+      <mj-text color="#333333" font-size="16px" line-height="1.6"></mj-text>
+      <mj-button
+        background-color="#047857"
+        color="#ffffff"
+        font-size="16px"
+        border-radius="6px"
+        padding="16px 24px"
+      ></mj-button>
+    </mj-attributes>
+
+    <!-- ✅ Inline style for footer links (MJML-safe) -->
+    <mj-style inline="inline">
+      a.footer-link { color: #9ca3af !important; text-decoration: underline; }
+    </mj-style>
+  </mj-head>
+
+  <mj-body background-color="#f8f9fa">
+    <!-- HEADER -->
+    <mj-section background-color="#ffffff" padding="20px 0">
+      <mj-column>
+        <mj-image
+          width="120px"
+          src="https://res.cloudinary.com/dtzesgkf0/image/upload/logo-new-removebg-preview_aenosg.png"
+          alt="Cisco learning Platform"
+        />
+      </mj-column>
+    </mj-section>
+
+    <!-- HERO -->
+    <mj-section background-color="#047857" padding="40px 0 20px 0">
+      <mj-column>
+        <mj-text
+          align="center"
+          color="#ffffff"
+          font-size="22px"
+          font-weight="bold"
+        >
+          Welcome to Cisco Learning Platform!
+        </mj-text>
+        <mj-text align="center" color="#d1fae5" font-size="16px">
+          Your trusted learning partner for seamless knowledge acquisation.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- MAIN CONTENT -->
+    <mj-section background-color="#ffffff" padding="30px 15px">
+      <mj-column>
+        <mj-text>Hello {{ name }},</mj-text>
+
+        <mj-text>
+          We’re excited to have you join a community built to help you learn,
+          grow, and achieve your goals. Our platform is designed to give you
+          clear, practical, and engaging learning experiences—whether you’re
+          just starting out or sharpening your skills.
+        </mj-text>
+
+        <mj-text>
+          Here, you’ll find well-structured lessons, hands-on exercises, and
+          resources carefully created to support your learning journey at every
+          step. Learn at your own pace, track your progress, and build real
+          skills you can confidently apply.
+        </mj-text>
+
+        <mj-text>
+          Your journey starts now, and we’re glad to be part of it.
+        </mj-text>
+
+        <mj-text>
+          If you have any questions or need support, our team is always here to
+          help.
+        </mj-text>
+
+        <mj-text>
+          Kindly click on the button below to verify your account.
+        </mj-text>
+
+        <mj-button href="{{verifyURL}}" align="center">
+          Verify My Account
+        </mj-button>
+
+        <mj-text>
+          If the button above doesn’t work, copy and paste the link below into
+          your browser:
+        </mj-text>
+
+        <!-- ✅ FIXED: Replaced illegal word-break attribute with inline style -->
+        <mj-text color="#047857" font-size="14px">
+          <span style="word-break: break-all">{{ verifyURL }}</span>
+        </mj-text>
+
+        <mj-text>
+          Once verified, you’ll be able to explore exclusive courses, lessons
+          and lectures meant for you to advance and sharpen your skills.
+        </mj-text>
+
+        <mj-text>
+          Happy learning,<br />
+          <strong>Cisco Learning Platform</strong>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- FOOTER -->
+    <mj-section background-color="#111827" padding="20px 0">
+      <mj-column>
+        <mj-text align="center" color="#ffffff" font-size="13px">
+          © {{ year }} Cisco learning Platform. All rights reserved.
+        </mj-text>
+
+        <!-- ✅ FIXED: removed class attribute, used inline style for links -->
+        <mj-text align="center" color="#9ca3af" font-size="12px">
+          <a href="https://www.gracerouteltd.com" class="footer-link">
+            Visit Our Website
+          </a>
+          &nbsp;•&nbsp;
+          <a href="mailto:info@gracerouteltd.com" class="footer-link">
+            Contact Support
+          </a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
