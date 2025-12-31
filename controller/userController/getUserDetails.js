@@ -1,13 +1,13 @@
 const AppError = require("../../utils/AppError");
 const userModel = require("../../model/userModel");
 
-const getUserProfile = async (req, res, next) => {
+const getUserDetails = async (req, res, next) => {
   try {
     const user_id = req.user.id;
 
     const user = await userModel
       .findById(user_id)
-      .select("id email name phone role coursesEnrolled_Created");
+      .select("id email name phone role");
 
     if (!user) return next(new AppError("user not found", 404));
 
@@ -17,11 +17,10 @@ const getUserProfile = async (req, res, next) => {
       fullname: user.name,
       phone: user.phone,
       role: user.role,
-      courses_enrolled_created: user.coursesEnrolled_Created,
     });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = getUserProfile;
+module.exports = getUserDetails;

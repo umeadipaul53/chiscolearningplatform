@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const assignmentSchema = new mongoose.Schema(
   {
-    course: {
+    courseId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course",
       required: true,
     },
 
-    assignmentTitle: {
+    title: {
       type: String,
       required: true,
       trim: true,
@@ -19,8 +19,11 @@ const assignmentSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-
-    submissionDeadline: {
+    descriptions: {
+      type: String,
+      required: true,
+    },
+    deadline: {
       type: Date,
       default: null,
     },
@@ -31,10 +34,10 @@ const assignmentSchema = new mongoose.Schema(
 );
 
 // Fetch assignments for a course
-assignmentSchema.index({ course: 1 });
+assignmentSchema.index({ courseId: 1 });
 
 // Order assignments inside a course
-assignmentSchema.index({ course: 1, createdAt: 1 });
+assignmentSchema.index({ courseId: 1, createdAt: 1 });
 
 const assignmentModel = mongoose.model("Assignment", assignmentSchema);
 

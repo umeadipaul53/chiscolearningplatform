@@ -35,12 +35,8 @@ const userSchema = new mongoose.Schema(
       default: "student",
     },
 
-    coursesEnrolled_Created: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Course",
-      },
-    ],
+    coursesCreated: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
+    coursesEnrolled: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
 
     verifyAccount: {
       type: Boolean,
@@ -49,6 +45,10 @@ const userSchema = new mongoose.Schema(
     twofactorStatus: {
       type: Boolean,
       default: true,
+    },
+    instructorStatus: {
+      type: Boolean,
+      default: false,
     },
   },
   {

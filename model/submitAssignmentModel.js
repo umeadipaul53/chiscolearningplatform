@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const AppError = require("../utils/AppError");
 
 const submitAssignmentSchema = new mongoose.Schema(
   {
@@ -6,18 +7,29 @@ const submitAssignmentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Assignment",
       required: true,
+      index: true,
     },
 
-    textAnswer_or_fileupload: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-
-    student: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+      index: true,
+    },
+
+    // Text-based submission
+    textAnswer: {
+      type: String,
+      trim: true,
+    },
+
+    // File-based submission
+    file: {
+      url: String,
+      publicId: String, // for Cloudinary
+      mimeType: String,
+      size: Number,
+      originalName: String,
     },
   },
   {
@@ -25,16 +37,28 @@ const submitAssignmentSchema = new mongoose.Schema(
   }
 );
 
-/* ---- INDEXES ---- */
+/* ---- VALIDATION ---- */
+// Require at least text OR file
+submitAssignmentSchema.pre("validate", function (next) {
+  if (!this.textAnswer && !this.file?.url) {
+    return next(
+      new AppError(
+        "Submission must include either a text answer or a file",
+        400
+      )
+    );
+  }
+  next();
+});
 
-// Fetch assignments for a course
-submitAssignmentSchema.index({ course: 1 });
+// One submission per user per assignment
+submitAssignmentSchema.index({ assignmentId: 1, userId: 1 }, { unique: true });
 
-// Order assignments inside a course
-submitAssignmentSchema.index({ course: 1, createdAt: 1 });
+// For sorting submissions
+submitAssignmentSchema.index({ assignmentId: 1, createdAt: -1 });
 
 const submitAssignmentModel = mongoose.model(
-  "Assignment",
+  "SubmitAssignment",
   submitAssignmentSchema
 );
 

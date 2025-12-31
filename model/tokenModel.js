@@ -8,7 +8,7 @@ const refreshTokenSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  createdAt: { type: Date, default: Date.now, expires: "1d" }, // optional auto-expiry
+  createdAt: { type: Date, default: Date.now, expires: "7d" }, // optional auto-expiry
 });
 
 const refreshTokenModel = mongoose.model("authToken", refreshTokenSchema);

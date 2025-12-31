@@ -82,12 +82,12 @@ const loginUser = async (req, res, next) => {
       //delete all 2facode existing for the user
       await twoFactorModel.deleteMany({ userId: user._id });
 
-      try {
-        //generate the code
-        const twoFactorCode = String(
-          Math.floor(Math.random() * 1000000)
-        ).padStart(6, "0");
+      //generate the code
+      const twoFactorCode = String(
+        Math.floor(Math.random() * 1000000)
+      ).padStart(6, "0");
 
+      try {
         // save code to DB
         const createFA = await twoFactorModel.create({
           userId: user._id,

@@ -61,12 +61,12 @@ const registerUser = async (req, res, next) => {
     if (!storeToken) return next(new AppError("Token not saved", 400));
 
     //construct the verification URL
-    const verifyURL = `https://www.learningapp.com/verify-user-account?token=${token}`;
+    const verifyURL = `https://chisco.softcodemicrosystem.com/verify-user-account?token=${token}`;
 
     //send the verification email using resend
     const sendingEmail = await sendEmail({
       to: newUser.email,
-      subject: "Welcome to Cisco learning platform",
+      subject: "Welcome to CHISCO learning platform",
       templateName: "welcome",
       variables: {
         name,

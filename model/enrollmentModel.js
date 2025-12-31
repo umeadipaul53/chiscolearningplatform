@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const enrollmentSchema = new mongoose.Schema(
   {
-    course: {
+    courseId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course",
       required: true,
     },
 
-    student: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
@@ -29,11 +29,11 @@ const enrollmentSchema = new mongoose.Schema(
 /* ---- INDEXES ---- */
 
 // Prevent duplicate enrollment
-enrollmentSchema.index({ course: 1, student: 1 }, { unique: true });
+enrollmentSchema.index({ courseId: 1, userId: 1 }, { unique: true });
 
 // Fast lookups
-enrollmentSchema.index({ student: 1 });
-enrollmentSchema.index({ course: 1 });
+enrollmentSchema.index({ userId: 1 });
+enrollmentSchema.index({ courseId: 1 });
 
 const enrollmentModel = mongoose.model("Enrollment", enrollmentSchema);
 

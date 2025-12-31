@@ -1,5 +1,44 @@
 const mongoose = require("mongoose");
 
+const fileSchema = new mongoose.Schema(
+  {
+    fileUrl: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    fileId: {
+      type: String,
+      required: true, // Cloudinary public_id
+    },
+
+    fileCategory: {
+      type: String,
+      enum: ["image", "pdf"], // for frontend clarity
+      required: true,
+    },
+
+    mimeType: {
+      type: String,
+      enum: ["image/jpeg", "image/png", "image/jpg", "application/pdf"],
+      required: true,
+    },
+
+    fileSize: {
+      type: Number,
+      required: true,
+      validate: {
+        validator: function (v) {
+          return v <= 2 * 1024 * 1024; // 2MB max
+        },
+        message: "File size must not exceed 2MB",
+      },
+    },
+  },
+  { _id: false }
+);
+
 const lessonSchema = new mongoose.Schema(
   {
     course: {
@@ -21,17 +60,15 @@ const lessonSchema = new mongoose.Schema(
       trim: true,
     },
 
-    file: {
-      type: String,
-      default: null,
+    files: {
+      type: [fileSchema],
+      default: [],
     },
   },
   {
     timestamps: true,
   }
 );
-
-/* ---- INDEXES ---- */
 
 // Fetch lessons for a course
 lessonSchema.index({ course: 1 });
