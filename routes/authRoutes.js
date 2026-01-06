@@ -41,7 +41,7 @@ authRouter
 authRouter
   .route("/forgot-password")
   .post(validate(validateEmail), forgotPassword);
-auth
+authRouter
   .route("/change-password")
   .get(validate(tokenValidator, "query"), verifyChangePasswordToken);
 authRouter
