@@ -40,11 +40,10 @@ const apiRateLimiter = rateLimit({
 const allowedOrigins = [
   "http://localhost:5173", // Vite frontend (development)
   "http://localhost:5000", // backend self-requests (needed for CSP)
-  "https://tehlex.co", // production domain
-  "https://www.tehlex.co", // www alias
-  "https://lush-estate.vercel.app", // vercel preview/staging
-  "https://lush-estate-backend.onrender.com", // render backend origin
-  "https://backend.tehlex.co",
+  "https://chisco.softcodemicrosystem.com", // production domain
+  "https://www.chisco.softcodemicrosystem.com", // www alias
+  "https://chiscolearningplatform.vercel.app", // vercel preview/staging
+  "https://chiscolearningplatform.onrender.com", // render backend origin
 ];
 
 const corsOptions = {
@@ -140,9 +139,9 @@ function applySecurity(app) {
         defaultSrc: ["'self'"],
         scriptSrc: [
           "'self'",
-          "https://tehlex.co",
-          "https://www.tehlex.co",
-          "https://lush-estate.vercel.app",
+          "https://chisco.softcodemicrosystem.com",
+          "https://chisco.softcodemicrosystem.com",
+          "https://chiscolearningplatform.vercel.app",
           "https://cdn.jsdelivr.net",
         ],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
@@ -152,11 +151,10 @@ function applySecurity(app) {
           "'self'",
           "http://localhost:5173",
           "http://localhost:4000",
-          "https://tehlex.co",
-          "https://www.tehlex.co",
-          "https://lush-estate.vercel.app",
-          "https://lush-estate-backend.onrender.com", // backend Render URL
-          "https://backend.tehlex.co",
+          "https://chisco.softcodemicrosystem.com",
+          "https://www.chisco.softcodemicrosystem.com",
+          "https://chiscolearningplatform.vercel.app",
+          "https://chiscolearningplatform.onrender.com", // backend Render URL
         ],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: [],
