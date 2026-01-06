@@ -32,31 +32,4 @@ const getInstructorCourses = async (req, res, next) => {
   }
 };
 
-const getAllCourses = async (req, res, next) => {
-  try {
-    const { page, limit } = req.query;
-
-    const { results: courses, pagination } = await paginate({
-      model: courseModel,
-      page,
-      limit,
-      sort: "-createdAt",
-      populate: { path: "createdBy", select: "name" },
-    });
-
-    res.status(200).json({
-      status: "success",
-      message:
-        courses.length > 0
-          ? "All courses retrieved successfully"
-          : "No courses found",
-      count: pagination.totalResults,
-      pagination,
-      data: courses,
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
-module.exports = { getInstructorCourses, getAllCourses };
+module.exports = getInstructorCourses;

@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const quizSubmissionSchema = new mongoose.Schema(
   {
-    quiz: {
+    quizId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Quiz",
       required: true,
     },
 
-    student: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
@@ -16,26 +16,30 @@ const quizSubmissionSchema = new mongoose.Schema(
 
     answers: [
       {
-        questionIndex: {
-          type: Number,
-          required: true,
-        },
-        selectedOption: {
-          type: Number,
-          required: true,
-        },
+        questionId: mongoose.Schema.Types.ObjectId,
+        selectedOption: String,
+        isCorrect: Boolean,
+        score: Number,
       },
     ],
 
-    score: {
+    totalScore: {
       type: Number,
-      required: true,
       min: 0,
     },
 
     passed: {
       type: Boolean,
       default: false,
+    },
+
+    isSubmitted: { type: Boolean, default: false },
+
+    submittedAt: Date,
+
+    startedAt: {
+      type: Date,
+      required: true,
     },
   },
   { timestamps: true }
@@ -44,11 +48,11 @@ const quizSubmissionSchema = new mongoose.Schema(
 /* ---- */
 
 // Prevent multiple submissions per quiz per student
-quizSubmissionSchema.index({ quiz: 1, student: 1 }, { unique: true });
+quizSubmissionSchema.index({ quizId: 1, userId: 1 }, { unique: true });
 
 // Fast lookups
-quizSubmissionSchema.index({ student: 1 });
-quizSubmissionSchema.index({ quiz: 1 });
+quizSubmissionSchema.index({ userId: 1 });
+quizSubmissionSchema.index({ quizId: 1 });
 
 const submitQuizModel = mongoose.model("QuizSubmission", quizSubmissionSchema);
 

@@ -23,6 +23,12 @@ const createAssignment = require("../controller/assignmentController/createAssig
 const validateAssignment = require("../validators/assignmentValidators/createAssignmentValidator");
 const getAllCourseAssignments = require("../controller/assignmentController/getAssignment");
 const getSubmittedAssignments = require("../controller/assignmentController/getAllSubmissions");
+const createQuiz = require("../controller/quizController/createQuiz");
+const createQuizSchema = require("../validators/quizValidators/createQuizValidator");
+const getAllQuizzes = require("../controller/quizController/getAllQuizzes");
+const {
+  getAllQuizResult,
+} = require("../controller/quizController/getQuizResult");
 
 combineRouter
   .route("/get-user-details")
@@ -124,6 +130,28 @@ combineRouter
     authenticateToken,
     authorizeRoles("instructor", "admin"),
     getSubmittedAssignments
+  );
+combineRouter
+  .route("/create-quiz")
+  .post(
+    authenticateToken,
+    authorizeRoles("instructor", "admin"),
+    validate(createQuizSchema),
+    createQuiz
+  );
+combineRouter
+  .route("/get-all-quizzes")
+  .get(
+    authenticateToken,
+    authorizeRoles("student", "instructor", "admin"),
+    getAllQuizzes
+  );
+combineRouter
+  .route("/get-quiz-results")
+  .get(
+    authenticateToken,
+    authorizeRoles("instructor", "admin"),
+    getAllQuizResult
   );
 
 module.exports = combineRouter;

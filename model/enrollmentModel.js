@@ -20,6 +20,15 @@ const enrollmentSchema = new mongoose.Schema(
       min: 0,
       max: 100,
     },
+
+    isCompleted: {
+      type: Boolean,
+      default: false,
+    },
+    completedAt: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,
