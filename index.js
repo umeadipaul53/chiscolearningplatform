@@ -41,11 +41,11 @@ app.get("/", (req, res) => {
 });
 
 // ---- api routes ----
-app.use("api/auth/v1", authRouter);
-app.use("api/combine/v1", combineRouter);
-app.use("api/admin/v1", adminRouter);
-app.use("api/student/v1", studentRouter);
-app.use("api/tutor/v1", tutorRouter);
+app.use("/api/auth/v1", authRouter);
+app.use("/api/combine/v1", combineRouter);
+app.use("/api/admin/v1", adminRouter);
+app.use("/api/student/v1", studentRouter);
+app.use("/api/tutor/v1", tutorRouter);
 
 // ---404 handler---
 app.use((req, res, next) => {

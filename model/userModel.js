@@ -56,12 +56,6 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-/* ---- INDEXES ----*/
-
-// Fast login & lookup
-userSchema.index({ email: 1 });
-userSchema.index({ phone: 1 });
-
 // Sorting by newest users
 userSchema.index({ createdAt: -1 });
 

@@ -24,8 +24,8 @@
       <mj-column>
         <mj-image
           width="120px"
-          src="https://res.cloudinary.com/dtzesgkf0/image/upload/logo-new-removebg-preview_aenosg.png"
-          alt="Cisco learning Platform"
+          src="https://res.cloudinary.com/dkwkweqca/image/upload/v1767826390/ChatGPT_Image_Jan_7__2026__11_49_00_PM-removebg-preview_bxmmwz.png"
+          alt="Chisco learning Platform"
         />
       </mj-column>
     </mj-section>
@@ -39,7 +39,7 @@
           font-size="22px"
           font-weight="bold"
         >
-          Welcome to Cisco Learning Platform!
+          Welcome to Chisco Learning Platform!
         </mj-text>
         <mj-text align="center" color="#d1fae5" font-size="16px">
           Your trusted learning partner for seamless knowledge acquisation.
@@ -100,7 +100,7 @@
 
         <mj-text>
           Happy learning,<br />
-          <strong>Cisco Learning Platform</strong>
+          <strong>Chisco Learning Platform</strong>
         </mj-text>
       </mj-column>
     </mj-section>
@@ -114,11 +114,14 @@
 
         <!-- ✅ FIXED: removed class attribute, used inline style for links -->
         <mj-text align="center" color="#9ca3af" font-size="12px">
-          <a href="https://www.gracerouteltd.com" class="footer-link">
+          <a href="https://chisco.softcodemicrosystem.com" class="footer-link">
             Visit Our Website
           </a>
           &nbsp;•&nbsp;
-          <a href="mailto:info@gracerouteltd.com" class="footer-link">
+          <a
+            href="mailto:info@chisco.softcodemicrosystem.com"
+            class="footer-link"
+          >
             Contact Support
           </a>
         </mj-text>

@@ -49,10 +49,10 @@
             <strong>Didn't request this?</strong><br />
             Our support team is here for you. Contact us at
             <a
-              href="mailto:info@softcodemicrosystem.com"
+              href="mailto:info@chisco.softcodemicrosystem.com"
               style="color: #007bff"
             >
-              info@softcodemicrosystem.com
+              info@chisco.softcodemicrosystem.com
             </a>
           </mj-text>
 
@@ -60,7 +60,7 @@
 
           <mj-text font-size="12px" color="#999999">
             <strong>Best regards,</strong><br />
-            Softcode Microsystem CBT Team
+            CHISCO Learning Platform
           </mj-text>
         </mj-column>
       </mj-section>

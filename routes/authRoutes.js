@@ -22,9 +22,7 @@ const resendTwoFactorCode = require("../controller/authController/resendTwoFacto
 const validateResendOTP = require("../validators/authValidators/validateResendOtp");
 
 authRouter.route("/refresh-token").post(refreshToken);
-authRouter
-  .route("/register")
-  .post(validate(validateUserRegistration), registerUser);
+authRouter.post("/register", validate(validateUserRegistration), registerUser);
 authRouter
   .route("/resend-account-verification")
   .post(validate(validateEmail), resendAccountVerification);

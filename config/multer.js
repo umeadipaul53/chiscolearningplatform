@@ -1,5 +1,4 @@
 const multer = require("multer");
-const { fileTypeFromBuffer } = require("file-type");
 const sharp = require("sharp");
 const AppError = require("../utils/AppError");
 
@@ -13,11 +12,12 @@ const fileFilter = (req, file, cb) => {
     "image/webp",
     "application/pdf",
   ];
+
   if (allowed.includes(file.mimetype)) {
     cb(null, true);
   } else {
     cb(
-      new AppError("Only JPEG, PNG, WebP and Pdf files are allowed!", 400),
+      new AppError("Only JPEG, PNG, WebP and PDF files are allowed!", 400),
       false
     );
   }
@@ -45,8 +45,11 @@ const validateFiles = async (req, res, next) => {
       });
     }
 
-    // ✅ Files are OPTIONAL
+    // Files are OPTIONAL
     if (!files.length) return next();
+
+    // ✅ Dynamic ESM import (FIX)
+    const { fileTypeFromBuffer } = await import("file-type");
 
     const allowedMimeTypes = [
       "image/jpeg",
@@ -63,7 +66,7 @@ const validateFiles = async (req, res, next) => {
         return next(new AppError(`Unsupported file type: ${type?.mime}`, 400));
       }
 
-      // Only validate images with sharp
+      // Validate images with sharp
       if (type.mime.startsWith("image")) {
         await sharp(file.buffer)
           .metadata()

@@ -34,7 +34,7 @@ async function sendEmail({ to, subject, templateName, variables }) {
 
     // ✅ 4. Send email using Resend
     const response = await resend.emails.send({
-      from: "SOMAPAUL <noreply@somapaul.co>", // must match your verified domain
+      from: "CHISCO <noreply@chisco.softcodemicrosystem.com>", // must match your verified domain
       to,
       subject,
       html,
