@@ -37,7 +37,9 @@ const tutorRouter = require("./routes/tutorRoutes");
 
 // default server test route
 app.get("/", (req, res) => {
-  res.status().json({ message: "server up and running", data: isProduction });
+  res
+    .status(200)
+    .json({ message: "server up and running", data: isProduction });
 });
 
 // ---- api routes ----
