@@ -3,7 +3,7 @@ const AppError = require("../utils/AppError");
 //Global Error Handling Middleware
 function globalErrorHandler(err, req, res, next) {
   if (err instanceof AppError) {
-    return res.status(err.statusCode).json({
+    return res.status(err.statusCode || 500).json({
       status: err.status,
       message: err.message,
       //only include details if present

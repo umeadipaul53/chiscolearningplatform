@@ -35,7 +35,7 @@ authRouter
   .post(validate(validateTwoFactorInput), twoFactorVerification);
 authRouter
   .route("/verify-user-account")
-  .get(validate(tokenValidator, "query"), verifyUserAccount);
+  .put(validate(tokenValidator, "query"), verifyUserAccount);
 authRouter
   .route("/forgot-password")
   .post(validate(validateEmail), forgotPassword);

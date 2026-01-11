@@ -19,7 +19,7 @@ function generateRefreshToken(user, tokenId, expiresIn = "7d") {
       role: user.role,
       tokenId,
     },
-    process.env.JWT_REFRESH_SECRET,
+    process.env.JWT_REFRESH_SCRET,
     {
       algorithm: "HS256",
       expiresIn,

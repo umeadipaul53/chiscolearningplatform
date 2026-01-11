@@ -3,21 +3,27 @@ const userModel = require("../../model/userModel");
 
 const getUserProfile = async (req, res, next) => {
   try {
-    const user_id = req.user.id;
+    const userId = req.user.id;
 
     const user = await userModel
-      .findById(user_id)
-      .select("id email name phone role coursesEnrolled_Created");
+      .findById(userId)
+      .select("email name phone role coursesEnrolled coursesCreated");
 
-    if (!user) return next(new AppError("user not found", 404));
+    if (!user) {
+      return next(new AppError("User not found", 404));
+    }
 
-    res.json({
-      id: user.id,
+    // Determine courses based on role
+    const courses =
+      user.role === "student" ? user.coursesEnrolled : user.coursesCreated;
+
+    res.status(200).json({
+      id: user._id,
       email: user.email,
       fullname: user.name,
       phone: user.phone,
       role: user.role,
-      courses_enrolled_created: user.coursesEnrolled_Created,
+      courses,
     });
   } catch (err) {
     next(err);
